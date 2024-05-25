@@ -51,7 +51,7 @@ const Home = () => {
             disabled={loading}
           >
             {loading ? (
-              <CircularProgress size={24} sx={{ color: "black" }} />
+              <CircularProgress size={24} sx={{ color: "white" }} />
             ) : (
               "Connect to Google Drive"
             )}
