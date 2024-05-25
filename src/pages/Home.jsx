@@ -1,6 +1,7 @@
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import axiosInstance from "../api/axiosConfig";
+import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 
 const Home = () => {
   const handleConnect = async () => {
@@ -15,10 +16,64 @@ const Home = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <Button variant="contained" color="primary" onClick={handleConnect}>
-        Connect to Google Drive
-      </Button>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 4,
+        marginTop:"50px"
+      }}
+    >
+      <Stack flexDirection={"row"}>
+        <Stack>
+          <Typography
+            variant="h5"
+            sx={{
+              color: "white",
+            }}
+          >
+            Check if your Google Drive is leaking sensitive data
+          </Typography>
+          <AddToDriveIcon />
+          <Button
+            variant="contained"
+            color="primary"
+            sx={{
+              background: "white",
+              color:"black"
+            }}
+            onClick={handleConnect}
+          >
+            Connect to Google Drive
+          </Button>
+          <hr />
+          <Typography
+             
+            sx={{
+              color: "white",
+            }}
+          >
+            See How secure your Google Drive aacount is in seconds
+          </Typography>
+          <Typography
+            sx={{
+              color: "white",
+            }}
+          >
+            Discover who still has access to your files, and who they were
+            created by
+          </Typography>
+          <Typography
+            sx={{
+              color: "white",
+            }}
+          >
+            find risky files exposed publicly to anyone on the internet
+          </Typography>
+        </Stack>
+        <Stack width={"50%"}></Stack>
+      </Stack>
     </div>
   );
 };
