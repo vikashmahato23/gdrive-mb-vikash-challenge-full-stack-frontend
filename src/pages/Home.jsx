@@ -1,17 +1,21 @@
-import React from "react";
-import { Button, Stack, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Button, Stack, Typography, CircularProgress } from "@mui/material";
 import axiosInstance from "../api/axiosConfig";
 import AddToDriveIcon from "@mui/icons-material/AddToDrive";
 
 const Home = () => {
+  const [loading, setLoading] = useState(false);
+
   const handleConnect = async () => {
+    setLoading(true);
     try {
       const response = await axiosInstance.get("/auth/google");
-      console.log(response,"==============>resoe")
+      console.log(response, "==============>response");
       // Redirect to Google authentication URL
-      window.location.href=response.data
+      window.location.href = response.data;
     } catch (error) {
       console.error("Error connecting to Google", error);
+      setLoading(false);
     }
   };
 
@@ -22,7 +26,7 @@ const Home = () => {
         justifyContent: "center",
         alignItems: "center",
         padding: 4,
-        marginTop:"50px"
+        marginTop: "50px",
       }}
     >
       <Stack flexDirection={"row"}>
@@ -41,20 +45,24 @@ const Home = () => {
             color="primary"
             sx={{
               background: "white",
-              color:"black"
+              color: "black",
             }}
             onClick={handleConnect}
+            disabled={loading}
           >
-            Connect to Google Drive
+            {loading ? (
+              <CircularProgress size={24} sx={{ color: "black" }} />
+            ) : (
+              "Connect to Google Drive"
+            )}
           </Button>
           <hr />
           <Typography
-             
             sx={{
               color: "white",
             }}
           >
-            See How secure your Google Drive aacount is in seconds
+            See how secure your Google Drive account is in seconds
           </Typography>
           <Typography
             sx={{
@@ -69,7 +77,7 @@ const Home = () => {
               color: "white",
             }}
           >
-            find risky files exposed publicly to anyone on the internet
+            Find risky files exposed publicly to anyone on the internet
           </Typography>
         </Stack>
         <Stack width={"50%"}></Stack>
